@@ -9,8 +9,7 @@ class Settings(BaseSettings):
     environment: str = "development"
     debug: bool = False
     api_v1_prefix: str = "/api"
-    cors_origins: list[str] = Field(
-        default_factory=lambda: ["http://localhost:3000", "https://localhost:3000"]
+    cors_origins: str = "http://localhost:3000"
     )
 
     database_url: str = "sqlite:///./jobtracker.db"
