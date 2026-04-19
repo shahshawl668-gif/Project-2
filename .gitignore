@@ -1,0 +1,14 @@
+backend/.venv/
+backend/__pycache__/
+backend/.pytest_cache/
+backend/*.db
+backend/test_jobtracker.db
+**/__pycache__/
+*.db
+
+frontend/.next/
+frontend/node_modules/
+frontend/out/
+
+.env
+.DS_Store

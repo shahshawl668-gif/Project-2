@@ -1,0 +1,30 @@
+services:
+  - name: jobtracker-ai-api
+    type: web
+    runtime: python
+    rootDir: backend
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: alembic -c ../alembic.ini upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: jobtracker-ai-db
+          property: connectionString
+      - key: JWT_SECRET_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ENVIRONMENT
+        value: production
+      - key: CORS_ORIGINS
+        sync: false
+
+databases:
+  - name: jobtracker-ai-db
+    region: oregon
+    plan: free
+    databaseName: jobtracker_ai
+    user: jobtracker_ai
